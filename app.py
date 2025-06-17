@@ -7,17 +7,6 @@ from keras.models import load_model
 from sklearn.preprocessing import MinMaxScaler
 from datetime import datetime
 
-st.markdown(
-    """
-    <style>
-    /* Set background color */
-    .stApp {
-        background-color: #2E2E2E;
-    }
-    """,
-    unsafe_allow_html=True
-)
-
 # Streamlit App Title
 st.title("📈 Stock Price Predictor App ")
 st.title("👉 Model Used – LSTM")
@@ -77,18 +66,19 @@ def plot_graph(title, *args):
     return fig
 
 # Plot Moving Averages
-st.subheader("📈 Original Close Price and MA for 250 days")
-st.pyplot(plot_graph("Close Price vs MA (250 Days)", (google_data['MA_for_250_days'], 'orange', 'MA for 250 days')))
+st.subheader("📈 Original Close Price and MA for 100 days")
+st.pyplot(plot_graph("Close Price vs MA (100 Days)", (google_data['MA_for_100_days'], 'red', 'MA for 100 days')))
 
 st.subheader("📈 Original Close Price and MA for 200 days")
 st.pyplot(plot_graph("Close Price vs MA (200 Days)", (google_data['MA_for_200_days'], 'green', 'MA for 200 days')))
 
-st.subheader("📈 Original Close Price and MA for 100 days")
-st.pyplot(plot_graph("Close Price vs MA (100 Days)", (google_data['MA_for_100_days'], 'red', 'MA for 100 days')))
+st.subheader("📈 Original Close Price and MA for 250 days")
+st.pyplot(plot_graph("Close Price vs MA (250 Days)", (google_data['MA_for_250_days'], 'orange', 'MA for 250 days')))
 
-st.subheader("📈 MA for 100 Days vs MA for 250 Days")
-st.pyplot(plot_graph("Close Price vs MA (100 & 250 Days)", 
+st.subheader("📈 Original Close Price vs MA for 100, 200, 250 Days")
+st.pyplot(plot_graph("Close Price vs MA (100, 200 & 250 Days)", 
                      (google_data['MA_for_100_days'], 'red', 'MA for 100 days'),
+                     (google_data['MA_for_200_days'], 'green', 'MA for 200 days'),
                      (google_data['MA_for_250_days'], 'orange', 'MA for 250 days')))
 
 # Prepare Data for Prediction
@@ -137,4 +127,4 @@ ax.text(0.05, 0.45, f'RMSE: {rmse:.2f}', transform=ax.transAxes, fontsize=12,
 ax.legend()
 st.pyplot(fig)
 
-st.success("✅ Stock price prediction completed successfully!")
+st.success("✅ STOCK PRICE PREDICTION COMPLETED SUCCESSFULLY !")
